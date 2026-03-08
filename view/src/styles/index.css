@@ -1,0 +1,59 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/geist";
+
+/* Importação dos Temas */
+@import "./themes/base.css";
+@import "./themes/dracula.css";
+@import "./themes/sublime.css";
+@import "./themes/nord.css";
+@import "./themes/metal.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@theme inline {
+  --font-sans: 'Geist Variable', sans-serif;
+  
+  /* Variáveis de raio calculadas */
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  
+  /* Mapeamento de cores para o Tailwind v4 usar as variáveis CSS */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+/* Animações customizadas que você já tinha */
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.task-item-enter { animation: fadeSlideUp 0.25s ease both; }
+.task-form-open { animation: slideDown 0.2s ease both; }
+
+@layer base {
+  * { @apply border-border outline-ring/50; }
+  body { @apply bg-background text-foreground transition-colors duration-300; }
+  html { @apply font-sans; }
+}

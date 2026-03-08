@@ -1,0 +1,18 @@
+@layer base {
+  .nord {
+    --background: oklch(0.24 0.02 258);
+    --foreground: oklch(0.94 0.01 255);
+    --card: oklch(0.28 0.02 258);
+    --card-foreground: oklch(0.94 0.01 255);
+    --primary: oklch(0.78 0.06 225);
+    --primary-foreground: oklch(0.24 0.02 258);
+    --accent: oklch(0.72 0.08 195);
+    --accent-foreground: oklch(0.24 0.02 258);
+    --destructive: oklch(0.63 0.16 30);
+    --muted: oklch(0.34 0.02 258);
+    --muted-foreground: oklch(0.75 0.02 255);
+    --border: oklch(1 0 0 / 10%);
+    --input: oklch(1 0 0 / 8%);
+    --ring: oklch(0.78 0.06 225);
+  }
+}

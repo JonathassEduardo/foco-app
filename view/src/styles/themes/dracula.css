@@ -1,0 +1,22 @@
+@layer base {
+  .dracula {
+    --background: oklch(0.253 0.035 264.43);
+    --foreground: oklch(0.985 0 0);
+    --card: oklch(0.283 0.035 264.43);
+    --card-foreground: oklch(0.985 0 0);
+    --popover: oklch(0.253 0.035 264.43);
+    --popover-foreground: oklch(0.985 0 0);
+    --primary: oklch(0.783 0.15 316);
+    --primary-foreground: oklch(0.253 0.035 264.43);
+    --secondary: oklch(0.45 0.035 264.43);
+    --secondary-foreground: oklch(0.985 0 0);
+    --muted: oklch(0.35 0.035 264.43);
+    --muted-foreground: oklch(0.75 0.02 264.43);
+    --accent: oklch(0.85 0.15 150); /* Green */
+    --accent-foreground: oklch(0.253 0.035 264.43);
+    --destructive: oklch(0.65 0.25 27);
+    --border: oklch(1 0 0 / 15%);
+    --input: oklch(1 0 0 / 10%);
+    --ring: oklch(0.783 0.15 316);
+  }
+}
