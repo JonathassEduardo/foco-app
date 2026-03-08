@@ -10,18 +10,18 @@ import {
   MenubarSubTrigger,
   MenubarTrigger,
 } from "@/private/components/ui/menubar";
-import { useTheme } from "next-themes";
-import { LayoutDashboard, User, Sun, Moon, Monitor, Settings, LogOut } from "lucide-react";
+import { LayoutDashboard, User, Settings, LogOut } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { APP_THEMES } from "@/private/config/themes";
 import { useAuth } from "@/private/hooks/useAuth";
+import { useTheme } from "@/private/hooks/useTheme";
 
 export function MainNavigation() {
   const { setTheme } = useTheme();
   const navigate = useNavigate();
   const { logout } = useAuth();
 
-    const handleLogout = async () => {
+  const handleLogout = async () => {
     await logout();
     navigate("/login");
   };
@@ -35,11 +35,12 @@ export function MainNavigation() {
           Dashboard
         </MenubarTrigger>
         <MenubarContent>
-          {/* Navega para a rota de tarefas */}
           <MenubarItem onClick={() => navigate("/tasks")}>
             Visão Geral <MenubarShortcut>⌘H</MenubarShortcut>
           </MenubarItem>
-          <MenubarItem>Estatísticas</MenubarItem>
+          <MenubarItem onClick={() => navigate("/dashboard")}>
+            Estatísticas
+          </MenubarItem>
           <MenubarSeparator />
           <MenubarItem>Exportar Dados</MenubarItem>
         </MenubarContent>
@@ -52,18 +53,17 @@ export function MainNavigation() {
           Perfil
         </MenubarTrigger>
         <MenubarContent>
-          {/* Navega para a sua ConfigurationPage */}
           <MenubarItem onClick={() => navigate("/configuration")}>
             <Settings className="w-4 h-4 mr-2" /> Configurações
           </MenubarItem>
           <MenubarSeparator />
-         <MenubarItem className="text-destructive" onClick={handleLogout}>
-          <LogOut className="w-4 h-4 mr-2" /> Sair
-        </MenubarItem>
+          <MenubarItem className="text-destructive" onClick={handleLogout}>
+            <LogOut className="w-4 h-4 mr-2" /> Sair
+          </MenubarItem>
         </MenubarContent>
       </MenubarMenu>
 
-      {/* Aparência (Sem navegação de rota, apenas troca de estado do tema) */}
+      {/* Aparência */}
       <MenubarMenu>
         <MenubarTrigger className="cursor-pointer">Aparência</MenubarTrigger>
         <MenubarContent>
@@ -71,8 +71,8 @@ export function MainNavigation() {
             <MenubarSubTrigger>Tema</MenubarSubTrigger>
             <MenubarSubContent>
               {APP_THEMES.map((theme) => (
-                <MenubarItem 
-                  key={theme.id} 
+                <MenubarItem
+                  key={theme.id}
                   onClick={() => setTheme(theme.id)}
                 >
                   <theme.icon className={`w-4 h-4 mr-2 ${theme.color || ""}`} />
@@ -81,7 +81,6 @@ export function MainNavigation() {
               ))}
             </MenubarSubContent>
           </MenubarSub>
-          
           <MenubarSeparator />
           <MenubarItem disabled>Personalizar...</MenubarItem>
         </MenubarContent>

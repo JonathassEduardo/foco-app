@@ -2,17 +2,18 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AppLayout } from "./private/components/AppLayout";
 import TaskPage from "./private/page/task/page";
 import ConfigurationPage from "./private/page/configurantion/page";
+import DashboardPage from "./private/page/dashboard/page";
 import { NotFoundPage } from "./private/page/not-found";
 import LoginPage from "./public/login/page";
 import RegisterPage from "./public/register/page";
 import { useAuth } from "./private/hooks/useAuth";
 import { ProtectedRoute } from "./private/config/ProtectedRoute";
 
-
 export default function App() {
   const { user } = useAuth();
   const isAuthenticated = !!user;
- return (
+
+  return (
     <BrowserRouter>
       <Routes>
         {/* Páginas públicas */}
@@ -37,6 +38,14 @@ export default function App() {
             element={
               <ProtectedRoute isAuthenticated={isAuthenticated}>
                 <TaskPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute isAuthenticated={isAuthenticated}>
+                <DashboardPage />
               </ProtectedRoute>
             }
           />
