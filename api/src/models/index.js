@@ -8,11 +8,17 @@ const config = require('../config/env')
 const basename = path.basename(__filename)
 const db = {}
 
-const sequelize = new Sequelize({
-  dialect: config.database.dialect,
-  storage: config.database.storage,
-  logging: false
-})
+const sequelize = new Sequelize(
+  config.database.name,
+  config.database.username,
+  String(config.database.password),
+  {
+    dialect: config.database.dialect,
+    host: config.database.host,
+    port: config.database.port,
+    logging: false,
+  }
+)
 
 fs
   .readdirSync(__dirname)
@@ -26,6 +32,7 @@ fs
   .forEach(file => {
     const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes)
     db[model.name] = model
+    console.log('Models carregados:', Object.keys(db))
   })
 
 Object.keys(db).forEach(modelName => {

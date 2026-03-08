@@ -10,7 +10,6 @@ function setAuthCookie(res, token) {
     httpOnly: true,
     secure: false,
     sameSite: 'lax',
-    domain: 'localhost',
     path: '/',       // ← adicione
     maxAge: 7 * 24 * 60 * 60 * 1000,
   })
